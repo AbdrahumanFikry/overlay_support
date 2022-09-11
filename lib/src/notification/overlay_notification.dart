@@ -44,6 +44,7 @@ OverlaySupportEntry showOverlayNotification(
 ///
 OverlaySupportEntry showSimpleNotification(
   Widget content, {
+  Function()? onTap,
   /**
    * See more [ListTile.leading].
    */
@@ -103,21 +104,23 @@ OverlaySupportEntry showSimpleNotification(
           color: background ?? Theme.of(context).colorScheme.secondary,
           elevation: elevation,
           child: SafeArea(
-              bottom: position == NotificationPosition.bottom,
-              top: position == NotificationPosition.top,
-              child: ListTileTheme(
-                textColor:
-                    foreground ?? Theme.of(context).colorScheme.onSecondary,
-                iconColor:
-                    foreground ?? Theme.of(context).colorScheme.onSecondary,
-                child: ListTile(
-                  leading: leading,
-                  title: content,
-                  subtitle: subtitle,
-                  trailing: trailing,
-                  contentPadding: contentPadding,
-                ),
-              )),
+            bottom: position == NotificationPosition.bottom,
+            top: position == NotificationPosition.top,
+            child: ListTileTheme(
+              textColor:
+                  foreground ?? Theme.of(context).colorScheme.onSecondary,
+              iconColor:
+                  foreground ?? Theme.of(context).colorScheme.onSecondary,
+              child: ListTile(
+                onTap: onTap,
+                leading: leading,
+                title: content,
+                subtitle: subtitle,
+                trailing: trailing,
+                contentPadding: contentPadding,
+              ),
+            ),
+          ),
         ),
       );
     },
